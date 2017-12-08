@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/head %>
+</head>
+<body>
+    <% if (loggedIn == true) {%>
+        <% include ../partials/headerRegistered %>
+      <% } else {%> 
+        <% include ../partials/headerNew %>
+      <% } %>
+    <div class="container">
+      <div class="jumbotron">
+        <div class="options">
+        </div>
+        <div class="graph">
+            <canvas id="myChart"></canvas>
+        </div>
+      </div>
+      <div class="pull-right">
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Check out the poll I just voted in!" data-url="<%= link %>" data-hashtags="fccpolls" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </div>
+      <form method="POST" action="/poll/<%= poll %>">
+        <div class="form-row align-items-center">
+          <div class="col-">
+            <label class="mr-sm-2" for="inlineFormCustomSelect">I vote for...</label>
+            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" name="option">
+            </select>
+          </div>
+           <div class="form-group">
+            <input class="form-control" id="inputdefault" type="text" placeholder="...Or my own custom option." name="custom">
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+          <button class="btn btn-danger btn-center hidden" type="submit" formaction="/delete/<%= poll %>">Delete Poll</button>
+      </form>
+    </div>
+    <footer class="footer">
+        <% include ../partials/footer %>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+</body>
+</html>
